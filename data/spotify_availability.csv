@@ -1,0 +1,242 @@
+iso_code,country,available
+AD,Andorra,yes
+AE,United Arab Emirates,yes
+AF,Afghanistan,yes
+AG,Antigua and Barbuda,yes
+AI,Anguilla,yes
+AL,Albania,yes
+AM,Armenia,yes
+AO,Angola,yes
+AQ,Antarctica,yes
+AR,Argentina,yes
+AS,American Samoa,yes
+AT,Austria,yes
+AU,Australia,yes
+AW,Aruba,yes
+AX,Åland Islands,yes
+AZ,Azerbaijan,yes
+BA,Bosnia and Herzegovina,yes
+BB,Barbados,yes
+BD,Bangladesh,yes
+BE,Belgium,yes
+BF,Burkina Faso,yes
+BG,Bulgaria,yes
+BH,Bahrain,yes
+BI,Burundi,yes
+BJ,Benin,yes
+BL,Saint Barthélemy,yes
+BM,Bermuda,yes
+BN,Brunei Darussalam,yes
+BO,Bolivia,yes
+BQ,Bonaire,yes
+BR,Brazil,yes
+BS,Bahamas,yes
+BT,Bhutan,yes
+BV,Bouvet Island,yes
+BW,Botswana,yes
+BY,Belarus,yes
+BZ,Belize,yes
+CA,Canada,yes
+CF,Central African Republic,yes
+CG,Congo,yes
+CH,Switzerland,yes
+CI,Côte d'Ivoire,yes
+CK,Cook Islands,yes
+CL,Chile,yes
+CM,Cameroon,yes
+CN,China,yes
+CO,Colombia,yes
+CR,Costa Rica,yes
+CU,Cuba,yes
+CV,Cabo Verde,yes
+CW,Curaçao,yes
+CX,Christmas Island,yes
+CY,Cyprus,yes
+CZ,Czech Republic,yes
+DE,Germany,yes
+DJ,Djibouti,yes
+DK,Denmark,yes
+DM,Dominica,yes
+DO,Dominican Republic,yes
+DZ,Algeria,yes
+EC,Ecuador,yes
+EE,Estonia,yes
+EG,Egypt,yes
+EH,Western Sahara,yes
+ER,Eritrea,yes
+ES,Spain,yes
+ET,Ethiopia,yes
+FI,Finland,yes
+FJ,Fiji,yes
+FK,Falkland Islands (Malvinas),yes
+FM,Micronesia,yes
+FO,Faroe Islands,yes
+FR,France,yes
+GA,Gabon,yes
+GB,United Kingdom of Great Britain and Northern Ireland,yes
+GD,Grenada,yes
+GE,Georgia,yes
+GF,French Guiana,yes
+GG,Guernsey,yes
+GH,Ghana,yes
+GI,Gibraltar,yes
+GL,Greenland,yes
+GM,Gambia,yes
+GN,Guinea,yes
+GP,Guadeloupe,yes
+GQ,Equatorial Guinea,yes
+GR,Greece,yes
+GS,South Georgia and the South Sandwich Islands,yes
+GT,Guatemala,yes
+GU,Guam,yes
+GW,Guinea-Bissau,yes
+GY,Guyana,yes
+HK,Hong Kong,yes
+HM,Heard Island and McDonalds Islands,yes
+HN,Honduras,yes
+HR,Croatia,yes
+HT,Haiti,yes
+HU,Hungary,yes
+ID,Indonesia,yes
+IE,Ireland,yes
+IL,Israel,yes
+IM,Isle of Man,yes
+IN,India,yes
+IO,British Indian Ocean Territory,yes
+IQ,Iraq,yes
+IR,Iran,yes
+IS,Iceland,yes
+IT,Italy,yes
+JE,Jersey,yes
+JM,Jamaica,yes
+JO,Jordan,yes
+JP,Japan,yes
+KE,Kenya,yes
+KG,Kyrgyzstan,yes
+KH,Cambodia,yes
+KI,Kiribati,yes
+KM,Comoros,yes
+KN,Saint Kitts and Nevis,yes
+KR,Korea Republic of,yes
+KW,Kuwait,yes
+KY,Cayman Islands,yes
+KZ,Kazakhstan,yes
+LA,Lao People's Democratic Republic,yes
+LB,Lebanon,yes
+LC,Saint Lucia,yes
+LI,Liechtenstein,yes
+LK,Sri Lanka,yes
+LR,Liberia,yes
+LS,Lesotho,yes
+LT,Lithuania,yes
+LU,Luxembourg,yes
+LV,Latvia,yes
+MA,Morocco,yes
+MC,Monaco,yes
+MD,Moldova,yes
+ME,Montenegro,yes
+MF,Saint Martin (French part),yes
+MG,Madagascar,yes
+MH,Marshall Islands,yes
+MK,Macedonia,yes
+ML,Mali,yes
+MM,Myanmar,yes
+MN,Mongolia,yes
+MO,Macao,yes
+MP,Northern Mariana Islands,yes
+MQ,Martinique,yes
+MR,Mauritania,yes
+MS,Montserrat,yes
+MT,Malta,yes
+MU,Mauritius,yes
+MV,Maldives,yes
+MW,Malawi,yes
+MX,Mexico,yes
+MY,Malaysia,yes
+MZ,Mozambique,yes
+NA,Namibia,yes
+NC,New Caledonia,yes
+NE,Niger,yes
+NF,Norfolk Island,yes
+NG,Nigeria,yes
+NI,Nicaragua,yes
+NL,Netherlands,yes
+NO,Norway,yes
+NP,Nepal,yes
+NR,Nauru,yes
+NU,Niue,yes
+NZ,New Zealand,yes
+OM,Oman,yes
+PA,Panama,yes
+PE,Peru,yes
+PF,French Polynesia,yes
+PG,Papua New Guinea,yes
+PH,Philippines,yes
+PK,Pakistan,yes
+PL,Poland,yes
+PM,Saint Pierre and Miquelon,yes
+PN,Pitcairn,yes
+PR,Puerto Rico,yes
+PS,Palestine,yes
+PT,Portugal,yes
+PW,Palau,yes
+PY,Paraguay,yes
+QA,Qatar,yes
+RO,Romania,yes
+RS,Serbia,yes
+RU,Russian Federation,yes
+RW,Rwanda,yes
+SA,Saudi Arabia,yes
+SB,Solomon Islands,yes
+SC,Seychelles,yes
+SD,Sudan,yes
+SE,Sweden,yes
+SG,Singapore,yes
+SI,Slovenia,yes
+SJ,Svalbard and Jan Mayen,yes
+SK,Slovakia,yes
+SL,Sierra Leone,yes
+SM,San Marino,yes
+SN,Senegal,yes
+SO,Somalia,yes
+SR,Suriname,yes
+SS,South Sudan,yes
+ST,Sao Tome and Principe,yes
+SV,El Salvador,yes
+SX,Sint Maarten (Dutch part),yes
+SY,Syrian Arab Republic,yes
+SZ,Swaziland,yes
+TC,Turks and Caicos Islands,yes
+TD,Chad,yes
+TF,French Southern Territories,yes
+TG,Togo,yes
+TH,Thailand,yes
+TJ,Tajikistan,yes
+TK,Tokelau,yes
+TL,Timor-Leste,yes
+TM,Turkmenistan,yes
+TN,Tunisia,yes
+TO,Tonga,yes
+TR,Turkey,yes
+TT,Tuvalu,yes
+TW,Taiwan,yes
+TZ,Tanzania,yes
+UA,Ukraine,yes
+UG,Uganda,yes
+UM,United States Minor Outlying Islands,yes
+US,United States of America,yes
+UY,Uruguay,yes
+UZ,Uzbekistan,yes
+VC,Saint Vincent and the Grenadines,yes
+VE,Venezuela,yes
+VG,British Virgin Islands,yes
+VI,US Virgin Islands,yes
+VN,Viet Nam,yes
+VU,Vanuatu,yes
+WF,Wallis and Futuna,yes
+WS,Samoa,yes
+YE,Yemen,yes
+YT,Mayotte,yes
+ZA,South Africa,yes
+ZM,Zambia,yes
+ZW,Zimbabwe,yes
