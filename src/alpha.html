@@ -5,28 +5,43 @@
         <link href="../tailwind.css" rel="stylesheet">
     </head>
     <body>
-        <div class="w-full h-screen flex flex-wrap py-2 bg-black">
-            <div class="w-full h-full content-center px-4">
-                <nav class="visible flex flex-wrap items-center justify-between px-2 py-3 bg-green-500 rounded">
-                    <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-                        <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                            <div class="flex-shrink-0 flex items-center">
-                                <a class="text-lg font-bold inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
-                                    href="../index.html"> Ear to
-                                    the Ground
-                                </a>
-                            </div>
-                            <div class="hidden sm:block sm:ml-7">
-                                <div class="flex space-x-4">
-                                    <a href="#"
-                                        class="bg-gray-900 text-white px-2 py-2 rounded-md text-sm font-medium"
-                                        aria-current="page">Alpha Release</a>
+        <header>
+            <div class="w-full h-screen flex flex-wrap py-2">
+                <div class="w-full h-full content-center px-4">
+                    <nav class="visible flex flex-wrap items-center justify-between px-2 py-3 bg-green-500 rounded">
+                        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
+                            <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+                                <div class="flex-shrink-0 flex items-center">
+                                    <a class="text-lg font-bold inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
+                                        href="../index.html"> Ear to
+                                        the Ground
+                                    </a>
+                                </div>
+                                <div class="hidden sm:block sm:ml-7">
+                                    <div class="flex space-x-4">
+                                        <a href="#"
+                                            class="bg-gray-900 text-white px-2 py-2 rounded-md text-sm font-medium"
+                                            aria-current="page">Alpha Release</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </nav>
+                    </nav>
+                    <main class="container">
+                        <div class="p-5 rounded text-center content-center">
+                            <embed src="../data/Alpha Report.pdf" width="1000" height="450"> </embed>
+                            <a href="../data/Alpha Report.pdf" download="Alpha Report.pdf">
+                                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                                    <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+                                    </svg>
+                                    <span>Download</span>
+                                </button>
+                            </a>
+                        </div>
+                    </main>
+                </div>
             </div>
-        </div>
+        </header>
     </body>            
 </html>
