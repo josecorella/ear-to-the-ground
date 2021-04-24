@@ -6,7 +6,7 @@
     </head>
     <body>
         <header>
-            <div class="w-full h-screen flex flex-wrap py-2">
+            <div class="overflow-y-auto w-full h-screen flex flex-wrap py-2 bg-black">
                 <div class="w-full h-full content-center px-4">
                     <nav class="visible flex flex-wrap items-center justify-between px-2 py-3 bg-green-500 rounded">
                         <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
@@ -27,11 +27,42 @@
                             </div>
                         </div>
                     </nav>
-                    <main class="container">
-                        <div class="p-5 rounded text-center content-center">
-                            <embed src="../data/Alpha Report.pdf" width="1000" height="450"> </embed>
+                    <div class="w-full h-screen bg-black space-y-6">
+                        <div
+                            class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between text-center">
+                            <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                                <span class="block text-green-600">The following images are part of the Alpha release.</span>
+                            </h2>
+                        </div>
+                        <div class="flex flex-wrap justify-center">
+                            <h3 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-2xl">
+                                <span class="block text-green-600">1. Worldwide Spotify Availability.</span>
+                            </h3>
+                            <div class="w-6/12 sm:w-4/12 px-4">
+                                <img src="../img/spotify_availability.png" alt="..." class="shadow rounded max-w-full h-auto align-middle" />
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap justify-center">
+                            <h3 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-2xl">
+                                <span class="block text-green-600">2. Top 10 Global Streams</span>
+                            </h3>
+                            <div class="w-6/12 sm:w-4/12 px-4">
+                                <img src="../img/top10Global.png" alt="..." class="shadow rounded max-w-full h-auto align-middle" />
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap justify-center">
+                            <h3 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-2xl">
+                                <span class="block text-green-600">2. Top 10 US Streams</span>
+                            </h3>
+                            <div class="w-6/12 sm:w-4/12 px-4">
+                                <img src="../img/top10US.png" alt="..." class="shadow rounded max-w-full h-auto align-middle" />
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap justify-center">
+                            <iframe src="../data/Alpha Report.pdf" width="1000" height="450" > </iframe>
                             <a href="../data/Alpha Report.pdf" download="Alpha Report.pdf">
-                                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                                <button
+                                    class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center align-middle">
                                     <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                         <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
                                     </svg>
@@ -39,7 +70,7 @@
                                 </button>
                             </a>
                         </div>
-                    </main>
+                    </div>
                 </div>
             </div>
         </header>

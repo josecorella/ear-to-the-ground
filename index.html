@@ -8,7 +8,7 @@
         <script src="https://unpkg.com/topojson@3"></script>
     </head>
     <body>
-        <div class="overflow-y-auto w-full h-screen flex flex-wrap py-2 bg-black">
+        <div class="overflow-y-auto w-full h-screen flex flex-wrap py-2 bg-gray-700">
             <div class="w-full h-full content-center px-4">
                 <nav class="visible flex flex-wrap items-center justify-between px-2 py-3 bg-green-500 rounded">
                     <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
@@ -41,37 +41,9 @@
                         favorite songs both old and new. 
                     </p>
                 </div>
-                <div class="w-full h-screen bg-black space-y-6">
-                    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between text-center">
-                        <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                            <span class="block text-green-600">The following images are part of the Alpha release.</span>
-                        </h2>
-                    </div>
-                    <div class="flex flex-wrap justify-center">
-                        <h3 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-2xl">
-                            <span class="block text-green-600">1. Worldwide Spotify Availability.</span>
-                        </h3>
-                        <div class="w-6/12 sm:w-4/12 px-4">
-                            <img src="./img/spotify_availability.png" alt="..."
-                                class="shadow rounded max-w-full h-auto align-middle" />
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap justify-center">
-                        <h3 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-2xl">
-                            <span class="block text-green-600">2. Top 10 Global Streams</span>
-                        </h3>
-                        <div class="w-6/12 sm:w-4/12 px-4">
-                            <img src="./img/top10Global.png" alt="..." class="shadow rounded max-w-full h-auto align-middle" />
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap justify-center">
-                        <h3 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-2xl">
-                            <span class="block text-green-600">2. Top 10 US Streams</span>
-                        </h3>
-                        <div class="w-6/12 sm:w-4/12 px-4">
-                            <img src="./img/top10US.png" alt="..." class="shadow rounded max-w-full h-auto align-middle" />
-                        </div>
-                    </div>
+                <div class="container mx-auto px-4 ">
+                    <svg class="ml-10 w-screen h-screen"></svg>
+                    <script src="src/map.js"></script>
                 </div>
             </div>
         </div>
