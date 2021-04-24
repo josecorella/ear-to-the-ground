@@ -10,12 +10,11 @@ var svg = d3.select("svg");
 var path = d3.geoPath().projection(projection);
 var g = svg.append("g");
 
-var promises = [d3.json("../data/world.json")];
+var promises = [d3.json("./data/world.json")];
 
 Promise.all(promises).then(ready);
 
 function ready([world]) {
-  console.log(world);
   g.selectAll("path")
     .data(topojson.feature(world, world.objects.countries).features)
     .enter()
@@ -26,16 +25,6 @@ function ready([world]) {
     .attr("d", path)
     .append("title")
     .text(function (d, i) {
-      console.log(d.properties.name);
       return d.properties.name;
     });
-  // svg
-  //   .append("path")
-  //   .datum(
-  //     topojson.mesh(world, world.objects.countries, function (a, b) {
-  //       return a !== b;
-  //     })
-  //   )
-  //   .attr("class", "states")
-  //   .attr("d", path);
 }
