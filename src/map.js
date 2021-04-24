@@ -9,13 +9,15 @@ var projection = d3
   .translate([750, 800]);
 
 var path = d3.geoPath().projection(projection);
-var promises = [
-  d3.json("./data/world.json", function (d) {
-    console.log(d);
-  }),
-];
 
-Promise.all(promises).then(ready);
+var promises = [d3.json("./data/world.json")];
+
+function process_world_data([world]) {
+  world.objects.countries.geometries.forEach((element) => {
+    console.log(element.properties.name);
+  });
+  return [world];
+}
 
 function ready([world]) {
   g.selectAll("path")
@@ -30,3 +32,6 @@ function ready([world]) {
       return d.properties.name;
     });
 }
+
+// add a catch here
+Promise.all(promises).then(process_world_data).then(ready);
