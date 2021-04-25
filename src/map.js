@@ -14,7 +14,11 @@ var promises = [d3.json("./data/world.json")];
 
 function process_world_data([world]) {
   world.objects.countries.geometries.forEach((element) => {
-    console.log(element.properties.name);
+    if (element.properties.hasOwnProperty("available")) {
+      console.log("Spotify is available in: ", element.properties.name);
+    } else {
+      console.log("Spotify is not available in: ", element.properties.name);
+    }
   });
   return [world];
 }
@@ -25,7 +29,11 @@ function ready([world]) {
     .enter()
     .append("path")
     .attr("d", path)
-    .attr("fill", (d, i) => (i % 2 == 0 ? "rgb(30,215,96)" : "rgb(25, 20, 20)"))
+    .attr("fill", (d) =>
+      d.properties.hasOwnProperty("available")
+        ? "rgb(30,215,96)"
+        : "rgb(25, 20, 20)"
+    )
     .style("stroke", "grey")
     .append("title")
     .text(function (d, i) {
