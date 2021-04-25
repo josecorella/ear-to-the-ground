@@ -57,7 +57,7 @@
             [[47]]
           ],
           "id": "124",
-          "properties": { "name": "Canada", "available":"True" }
+          "properties": { "name": "Canada", "available":"True", "charts":"regional-ca-daily-latest.csv" }
         },
         {
           "type": "MultiPolygon",
@@ -74,7 +74,7 @@
             [[59]]
           ],
           "id": "840",
-          "properties": { "name": "United States of America", "available":"True" }
+          "properties": { "name": "United States of America", "available":"True", "charts": "regional-us-daily-latest.csv"}
         },
         {
           "type": "Polygon",
@@ -112,19 +112,19 @@
             [[89]]
           ],
           "id": "360",
-          "properties": { "name": "Indonesia", "available":"True" }
+          "properties": { "name": "Indonesia", "available":"True", "charts":"regional-id-daily-latest.csv" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[90, 91]], [[92, 93, 94, 95, 96, 97]]],
           "id": "032",
-          "properties": { "name": "Argentina", "available":"True" }
+          "properties": { "name": "Argentina", "available":"True", "charts":"regional-ar-daily-latest.csv" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[-92, 98]], [[99, -95, 100, 101]]],
           "id": "152",
-          "properties": { "name": "Chile", "available":"True" }
+          "properties": { "name": "Chile", "available":"True", "charts":"regional-cl-daily-latest.csv" }
         },
         {
           "type": "Polygon",
@@ -166,7 +166,7 @@
           "type": "Polygon",
           "arcs": [[-133, 134]],
           "id": "214",
-          "properties": { "name": "Dominican Rep.", "available":"True" }
+          "properties": { "name": "Dominican Rep.", "available":"True", "charts":"regional-do-daily-latest.csv" }
         },
         {
           "type": "MultiPolygon",
@@ -271,13 +271,13 @@
           "type": "Polygon",
           "arcs": [[-191, -98, 192, 193, 194, 195, 196, 197, 198, 199, 200]],
           "id": "076",
-          "properties": { "name": "Brazil", "available":"True" }
+          "properties": { "name": "Brazil", "available":"True", "charts":"regional-br-daily-latest.csv" }
         },
         {
           "type": "Polygon",
           "arcs": [[-194, 201, -96, -100, 202]],
           "id": "068",
-          "properties": { "name": "Bolivia", "available":"True" }
+          "properties": { "name": "Bolivia", "available":"True", "charts":"regional-bo-daily-latest.csv" }
         },
         {
           "type": "Polygon",
@@ -289,7 +289,7 @@
           "type": "Polygon",
           "arcs": [[-196, -206, 206, 207, 208, 209, 210]],
           "id": "170",
-          "properties": { "name": "Colombia", "available":"True" }
+          "properties": { "name": "Colombia", "available":"True", "charts":"regional-co-daily-latest.csv" }
         },
         {
           "type": "Polygon",
@@ -301,7 +301,7 @@
           "type": "Polygon",
           "arcs": [[-213, 214, 215, 216]],
           "id": "188",
-          "properties": { "name": "Costa Rica", "available":"True" }
+          "properties": { "name": "Costa Rica", "available":"True", "charts":"regional-cr-daily-latest.csv" }
         },
         {
           "type": "Polygon",
@@ -313,7 +313,7 @@
           "type": "Polygon",
           "arcs": [[-219, 220, 221, 222, 223]],
           "id": "340",
-          "properties": { "name": "Honduras", "available":"True" }
+          "properties": { "name": "Honduras", "available":"True", "charts":"regional-hn-daily-latest.csv" }
         },
         {
           "type": "Polygon",
@@ -325,7 +325,7 @@
           "type": "Polygon",
           "arcs": [[-189, 226, 227, -223, -226, 228]],
           "id": "320",
-          "properties": { "name": "Guatemala", "available":"True" }
+          "properties": { "name": "Guatemala", "available":"True", "charts":"regional-gt-daily-latest.csv" }
         },
         {
           "type": "Polygon",
@@ -359,13 +359,13 @@
             [[245]]
           ],
           "id": "250",
-          "properties": { "name": "France", "available":"True" }
+          "properties": { "name": "France", "available":"True", "charts":"regional-fr-daily-latest.csv" }
         },
         {
           "type": "Polygon",
           "arcs": [[-205, 246, -207]],
           "id": "218",
-          "properties": { "name": "Ecuador", "available":"True" }
+          "properties": { "name": "Ecuador", "available":"True", "charts":"regional-ec-daily-latest.csv" }
         },
         {
           "type": "Polygon",
@@ -605,7 +605,7 @@
           "type": "Polygon",
           "arcs": [[347, 348, 349, 350, 351]],
           "id": "784",
-          "properties": { "name": "United Arab Emirates", "available":"True" }
+          "properties": { "name": "United Arab Emirates", "available":"True", "charts": "regional-ae-daily-latest.csv" }
         },
         {
           "type": "Polygon",
@@ -785,13 +785,13 @@
           "type": "Polygon",
           "arcs": [[448, 449, 450, 451, 452, 453, 454]],
           "id": "040",
-          "properties": { "name": "Austria", "available":"True" }
+          "properties": { "name": "Austria", "available":"True", "charts":"regional-at-daily-latest.csv"}
         },
         {
           "type": "Polygon",
           "arcs": [[-441, 455, 456, 457, 458, -449, 459]],
           "id": "348",
-          "properties": { "name": "Hungary", "available":"True" }
+          "properties": { "name": "Hungary", "available":"True", "charts":"regional-hu-daily-latest.csv" }
         },
         {
           "type": "Polygon",
@@ -821,25 +821,25 @@
           "type": "Polygon",
           "arcs": [[-158, -468, 468]],
           "id": "233",
-          "properties": { "name": "Estonia", "available":"True" }
+          "properties": { "name": "Estonia", "available":"True", "charts":"regional-ee-daily-latest.csv" }
         },
         {
           "type": "Polygon",
           "arcs": [[-446, 469, -453, 470, -238, 471, 472, 473, 474, 475, 476]],
           "id": "276",
-          "properties": { "name": "Germany", "available":"True" }
+          "properties": { "name": "Germany", "available":"True", "charts":"regional-de-daily-latest.csv" }
         },
         {
           "type": "Polygon",
           "arcs": [[-463, 477, 478, 479, 480, 481]],
           "id": "100",
-          "properties": { "name": "Bulgaria", "available":"True" }
+          "properties": { "name": "Bulgaria", "available":"True", "charts":"regional-bg-daily-latest.csv" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[482]], [[-480, 483, 484, 485, 486]]],
           "id": "300",
-          "properties": { "name": "Greece", "available":"True" }
+          "properties": { "name": "Greece", "available":"True", "charts":"regional-gr-daily-latest.csv" }
         },
         {
           "type": "MultiPolygon",
@@ -863,7 +863,7 @@
           "type": "Polygon",
           "arcs": [[-452, 499, -239, -471]],
           "id": "756",
-          "properties": { "name": "Switzerland", "available":"True" }
+          "properties": { "name": "Switzerland", "available":"True", "charts":"regional-ch-daily-latest.csv" }
         },
         {
           "type": "Polygon",
@@ -875,7 +875,7 @@
           "type": "Polygon",
           "arcs": [[-473, -501, -244, 501, 502]],
           "id": "056",
-          "properties": { "name": "Belgium", "available":"True" }
+          "properties": { "name": "Belgium", "available":"True", "charts":"regional-be-daily-latest.csv" }
         },
         {
           "type": "Polygon",
@@ -893,7 +893,7 @@
           "type": "Polygon",
           "arcs": [[-505, 506, -242, 507]],
           "id": "724",
-          "properties": { "name": "Spain", "available":"True" }
+          "properties": { "name": "Spain", "available":"True", "charts":"regional-es-daily-latest.csv" }
         },
         {
           "type": "Polygon",
@@ -923,7 +923,7 @@
           "type": "MultiPolygon",
           "arcs": [[[518]], [[519]]],
           "id": "036",
-          "properties": { "name": "Australia", "available":"True" }
+          "properties": { "name": "Australia", "available":"True", "charts":"regional-au-daily-latest.csv" }
         },
         {
           "type": "Polygon",
@@ -977,13 +977,13 @@
           "type": "MultiPolygon",
           "arcs": [[[-476, 528]], [[529]]],
           "id": "208",
-          "properties": { "name": "Denmark", "available":"True" }
+          "properties": { "name": "Denmark", "available":"True", "charts":"regional-dk-daily-latest.csv" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[-510, 530]], [[531]]],
           "id": "826",
-          "properties": { "name": "United Kingdom", "available":"True" }
+          "properties": { "name": "United Kingdom", "available":"True", "charts": "regional-gb-daily-latest.csv"}
         },
         {
           "type": "Polygon",
@@ -1039,7 +1039,7 @@
           "type": "Polygon",
           "arcs": [[-160, 549, -430, -171]],
           "id": "246",
-          "properties": { "name": "Finland", "available":"True" }
+          "properties": { "name": "Finland", "available":"True", "charts":"regional-fi-daily-latest.csv" }
         },
         {
           "type": "Polygon",
@@ -1051,7 +1051,7 @@
           "type": "Polygon",
           "arcs": [[-445, -551, -454, -470]],
           "id": "203",
-          "properties": { "name": "Czechia", "available":"True" }
+          "properties": { "name": "Czechia", "available":"True", "charts":"regional-cz-daily-latest.csv" }
         },
         {
           "type": "Polygon",
@@ -1104,7 +1104,7 @@
           "type": "Polygon",
           "arcs": [[-124, 574, 575, -329, 576]],
           "id": "818",
-          "properties": { "name": "Egypt", "available":"True" }
+          "properties": { "name": "Egypt", "available":"True", "charts":"regional-eg-daily-latest.csv" }
         },
         {
           "type": "Polygon",

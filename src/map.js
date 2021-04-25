@@ -13,13 +13,13 @@ var path = d3.geoPath().projection(projection);
 var promises = [d3.json("./data/world.json")];
 
 function process_world_data([world]) {
-  world.objects.countries.geometries.forEach((element) => {
-    if (element.properties.hasOwnProperty("available")) {
-      console.log("Spotify is available in: ", element.properties.name);
-    } else {
-      console.log("Spotify is not available in: ", element.properties.name);
-    }
-  });
+  // world.objects.countries.geometries.forEach((element) => {
+  //   if (element.properties.hasOwnProperty("available")) {
+  //     console.log("Spotify is available in: ", element.properties.name);
+  //   } else {
+  //     console.log("Spotify is not available in: ", element.properties.name);
+  //   }
+  // });
   return [world];
 }
 
