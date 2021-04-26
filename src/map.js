@@ -1,4 +1,5 @@
 var country_charts = new Map();
+var countries = new Map();
 var svg = d3.select("svg");
 var g = svg.append("g");
 var projection = d3
@@ -7,6 +8,12 @@ var projection = d3
   .scale(225)
   .rotate([0, 0])
   .translate([750, 800]);
+
+var tooltip = d3
+  .select("body")
+  .append("div")
+  .attr("class", "tooltip")
+  .style("opacity", 0);
 
 var path = d3.geoPath().projection(projection);
 
@@ -25,8 +32,25 @@ function process_world_data([world]) {
   return [world];
 }
 
+async function read_csv([world]) {
+  for (let [key, value] of country_charts.entries()) {
+    country_chart = new Array();
+    if (value !== "No Data Found") {
+      await d3.csv("./data/" + value, function (d) {
+        var song = new Object();
+        song.position = d.Position;
+        song.name = d["Track Name"];
+        song.artist = d.Artist;
+        song.streams = d.Streams;
+        song.url = d.URL;
+        country_chart.push(song);
+      });
+      countries.set(key, country_chart);
+    }
+  }
+  return [world];
+}
 function ready([world]) {
-  console.log(country_charts);
   g.selectAll("path")
     .data(topojson.feature(world, world.objects.countries).features)
     .enter()
@@ -38,11 +62,18 @@ function ready([world]) {
         : "rgb(25, 20, 20)"
     )
     .style("stroke", "grey")
-    .append("title")
-    .text(function (d) {
-      return d.properties.name;
+    .on("mouseover", function (event, d) {
+      console.log(d);
+      tooltip.transition().duration(200).style("opacity", 1);
+      tooltip
+        .html(d.properties.name + "<br/>")
+        .style("left", event.pageX + "px")
+        .style("top", event.pageY - 28 + "px");
+    })
+    .on("mouseout", function (d) {
+      tooltip.transition().duration(500).style("opacity", 0);
     });
 }
 
 // add a catch here
-Promise.all(promises).then(process_world_data).then(ready);
+Promise.all(promises).then(process_world_data).then(read_csv).then(ready);
