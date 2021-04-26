@@ -62,7 +62,7 @@ function ready([world]) {
         : "rgb(25, 20, 20)"
     )
     .style("stroke", "grey")
-    .on("mouseover", function (event, d) {
+    .on("click", function (event, d) {
       console.log(d);
       tooltip.transition().duration(200).style("opacity", 1);
       tooltip
