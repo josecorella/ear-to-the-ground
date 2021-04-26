@@ -2,6 +2,9 @@ var country_charts = new Map();
 var countries = new Map();
 var svg = d3.select("svg");
 var g = svg.append("g");
+var barX = 100;
+var h = 90;
+
 var projection = d3
   .geoMercator()
   .center([0, 0])
@@ -13,6 +16,13 @@ var tooltip = d3
   .select("body")
   .append("div")
   .attr("class", "tooltip")
+  .style("opacity", 0)
+  .html("<div id='tipDiv'></div>");
+var tipSVG = d3
+  .select("#tipDiv")
+  .append("svg")
+  .attr("width", 1000)
+  .attr("height", 500)
   .style("opacity", 0);
 
 var path = d3.geoPath().projection(projection);
@@ -63,15 +73,75 @@ function ready([world]) {
     )
     .style("stroke", "grey")
     .on("click", function (event, d) {
-      console.log(d);
+      console.log(countries.get(d.properties.name));
       tooltip.transition().duration(200).style("opacity", 1);
       tooltip
-        .html(d.properties.name + "<br/>")
         .style("left", event.pageX + "px")
         .style("top", event.pageY - 28 + "px");
+
+      tipSVG.transition().duration(200).style("opacity", 1);
+      tipSVG
+        .style("left", event.pageX + "px")
+        .style("top", event.pageY - 28 + "px");
+
+      if (countries.get(d.properties.name) !== undefined) {
+        tipSVG
+          .append("text")
+          .attr("font-family", "Arial, Helvetica, sans-serif")
+          .attr("transform", "translate(500,50)")
+          .style("text-anchor", "middle")
+          .attr("fill", "black")
+          .text(d.properties.name);
+        tipSVG
+          .selectAll("rect")
+          .data(countries.get(d.properties.name))
+          .enter()
+          .append("rect")
+          .attr("x", function (d, i) {
+            return barX + i * 85;
+          })
+          .attr("y", function (d, i) {
+            console.log(Math.floor(d.streams / 1000));
+            // return Math.floor(d.streams / 1000);
+            return -(-(450 - Math.floor(d.streams / 1000) - 90));
+            // return 425;
+          })
+          .attr("width", function (d) {
+            return 35;
+          })
+          .attr("height", function (d) {
+            // Math.floor(d.streams / 1000);
+            return 450 - -(-(450 - Math.floor(d.streams / 1000) - 90));
+          })
+          .attr("fill", function (d, i) {
+            return "rgb(30,215,96)";
+          })
+          .text(function (d) {
+            return d.name;
+          });
+      } else {
+        tipSVG
+          .append("text")
+          .attr("font-family", "Arial, Helvetica, sans-serif")
+          .attr("transform", "translate(500,50)")
+          .style("text-anchor", "middle")
+          .attr("fill", "black")
+          .text(d.properties.name);
+        tipSVG
+          .append("text")
+          .attr("font-family", "Arial, Helvetica, sans-serif")
+          .attr("transform", "translate(500,250)")
+          .style("text-anchor", "middle")
+          .style("font", "50px times")
+          .attr("fill", "black")
+          .text("No Spotify Data Found 🤷🏽‍♂️");
+      }
     })
     .on("mouseout", function (d) {
       tooltip.transition().duration(500).style("opacity", 0);
+      tipSVG.transition().duration(500).style("opacity", 0);
+      tipSVG.selectAll("text").remove();
+      tipSVG.selectAll("rect").remove();
     });
 }
 
