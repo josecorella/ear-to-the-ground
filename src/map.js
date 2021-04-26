@@ -73,7 +73,7 @@ function ready([world]) {
     )
     .style("stroke", "grey")
     .on("click", function (event, d) {
-      console.log(countries.get(d.properties.name));
+      // console.log(countries.get(d.properties.name));
       tooltip.transition().duration(200).style("opacity", 1);
       tooltip
         .style("left", event.pageX + "px")
@@ -85,6 +85,7 @@ function ready([world]) {
         .style("top", event.pageY - 28 + "px");
 
       if (countries.get(d.properties.name) !== undefined) {
+        var chart_array = countries.get(d.properties.name);
         tipSVG
           .append("text")
           .attr("font-family", "Arial, Helvetica, sans-serif")
@@ -101,17 +102,28 @@ function ready([world]) {
             return barX + i * 85;
           })
           .attr("y", function (d, i) {
-            console.log(Math.floor(d.streams / 1000));
-            // return Math.floor(d.streams / 1000);
-            return -(-(450 - Math.floor(d.streams / 1000) - 90));
-            // return 425;
+            console.log(d.streams / 5000);
+            console.log(d.streams);
+            if (chart_array[0].streams > 1000000) {
+              return -(-(450 - Math.floor(d.streams / 10000) - 90));
+            } else if (chart_array[0].streams > 100000) {
+              return -(-(450 - Math.floor(d.streams / 5000) - 90));
+            } else {
+              // return Math.floor(d.streams / 1000);
+              return -(-(450 - Math.floor(d.streams / 1000) - 90));
+            }
           })
           .attr("width", function (d) {
             return 35;
           })
           .attr("height", function (d) {
-            // Math.floor(d.streams / 1000);
-            return 450 - -(-(450 - Math.floor(d.streams / 1000) - 90));
+            if (chart_array[0].streams > 1000000) {
+              return 450 - -(-(450 - Math.floor(d.streams / 10000) - 90));
+            } else if (chart_array[0].streams > 100000) {
+              return 450 - -(-(450 - Math.floor(d.streams / 5000) - 90));
+            } else {
+              return 450 - -(-(450 - Math.floor(d.streams / 1000) - 90));
+            }
           })
           .attr("fill", function (d, i) {
             return "rgb(30,215,96)";
