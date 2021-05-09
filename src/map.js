@@ -8,9 +8,9 @@ var h = 90;
 var projection = d3
   .geoMercator()
   .center([0, 0])
-  .scale(225)
+  .scale(220)
   .rotate([0, 0])
-  .translate([750, 800]);
+  .translate([750, 650]);
 
 var tooltip = d3
   .select("body")
@@ -60,6 +60,7 @@ async function read_csv([world]) {
   }
   return [world];
 }
+
 function ready([world]) {
   g.selectAll("path")
     .data(topojson.feature(world, world.objects.countries).features)
@@ -73,16 +74,11 @@ function ready([world]) {
     )
     .style("stroke", "grey")
     .on("click", function (event, d) {
-      // console.log(countries.get(d.properties.name));
       tooltip.transition().duration(200).style("opacity", 1);
-      tooltip
-        .style("left", event.pageX + "px")
-        .style("top", event.pageY - 28 + "px");
+      tooltip.style("left", "500px").style("top", "250px");
 
       tipSVG.transition().duration(200).style("opacity", 1);
-      tipSVG
-        .style("left", event.pageX + "px")
-        .style("top", event.pageY - 28 + "px");
+      tipSVG.style("left", "0").style("top", "250px");
 
       if (countries.get(d.properties.name) !== undefined) {
         var chart_array = countries.get(d.properties.name);
@@ -102,15 +98,12 @@ function ready([world]) {
             return barX + i * 85;
           })
           .attr("y", function (d, i) {
-            console.log(d.streams / 5000);
-            console.log(d.streams);
             if (chart_array[0].streams > 1000000) {
               return -(-(450 - Math.floor(d.streams / 10000) - 90));
             } else if (chart_array[0].streams > 100000) {
-              return -(-(450 - Math.floor(d.streams / 5000) - 90));
+              return -(-(400 - Math.floor(d.streams / 5000) - 90));
             } else {
-              // return Math.floor(d.streams / 1000);
-              return -(-(450 - Math.floor(d.streams / 1000) - 90));
+              return -(-(350 - Math.floor(d.streams / 1000) - 90));
             }
           })
           .attr("width", function (d) {
@@ -120,9 +113,9 @@ function ready([world]) {
             if (chart_array[0].streams > 1000000) {
               return 450 - -(-(450 - Math.floor(d.streams / 10000) - 90));
             } else if (chart_array[0].streams > 100000) {
-              return 450 - -(-(450 - Math.floor(d.streams / 5000) - 90));
+              return 450 - -(-(400 - Math.floor(d.streams / 5000) - 90));
             } else {
-              return 450 - -(-(450 - Math.floor(d.streams / 1000) - 90));
+              return 450 - -(-(350 - Math.floor(d.streams / 1000) - 90));
             }
           })
           .attr("fill", function (d, i) {
