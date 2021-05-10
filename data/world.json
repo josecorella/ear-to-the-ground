@@ -354,7 +354,6 @@
         {
           "type": "MultiPolygon",
           "arcs": [
-            [[-200, -236, 236]],
             [[237, 238, 239, 240, 241, 242, 243, 244]],
             [[245]]
           ],
@@ -464,10 +463,13 @@
           "properties": { "name": "Côte d'Ivoire", "available":"True" }
         },
         {
-          "type": "Polygon",
-          "arcs": [[-262, -271, -300, 300, 301, 302, 303]],
+          "type": "MultiPolygon",
+          "arcs": [
+            [[-200, -236, 236]],
+            [[-262, -271, -300, 300, 301, 302, 303]]
+          ],
           "id": "324",
-          "properties": { "name": "Guinea", "available":"True" }
+          "properties": { "name": "French Guiana", "available":"True" }
         },
         {
           "type": "Polygon",

@@ -83,6 +83,7 @@ function ready([world]) {
       tipSVG.style("left", "0").style("top", "250px");
 
       if (countries.get(d.properties.name) !== undefined) {
+        console.log(d.properties.name);
         var chart_array = countries.get(d.properties.name);
         var data = [];
         var songs = [];
