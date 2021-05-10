@@ -146,12 +146,11 @@ function ready([world]) {
             return "rgb(30,215,96)";
           })
           .text(function (d) {
-            console.log(d.name);
             return d.name;
           });
 
         var y_axis = d3.axisLeft().scale(yScale);
-        var xAxis = d3.axisBottom(xScale).tickFormat((d) => d);
+        var xAxis = d3.axisBottom(xScale);
         tipSVG.append("g").attr("transform", "translate(80, 0)").call(y_axis);
         tipSVG.append("g").attr("transform", "translate(50,450)").call(xAxis);
       } else {
