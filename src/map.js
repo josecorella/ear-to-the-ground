@@ -82,13 +82,20 @@ function ready([world]) {
 
       if (countries.get(d.properties.name) !== undefined) {
         var chart_array = countries.get(d.properties.name);
+        var data = [];
+        chart_array.forEach((element) => {
+          data.push(+element.streams);
+        });
+
+        var yScale = d3.scaleLinear().domain([0, d3.max(data)]);
+
         tipSVG
           .append("text")
           .attr("font-family", "Arial, Helvetica, sans-serif")
           .attr("transform", "translate(500,50)")
           .style("text-anchor", "middle")
           .attr("fill", "black")
-          .text(d.properties.name);
+          .text("Top 10 Spotify Streams in " + d.properties.name);
         tipSVG
           .selectAll("rect")
           .data(countries.get(d.properties.name))
@@ -99,10 +106,22 @@ function ready([world]) {
           })
           .attr("y", function (d, i) {
             if (chart_array[0].streams > 1000000) {
+              yScale.range([
+                450,
+                -(-(450 - Math.floor(chart_array[0].streams / 10000) - 90)),
+              ]);
               return -(-(450 - Math.floor(d.streams / 10000) - 90));
             } else if (chart_array[0].streams > 100000) {
+              yScale.range([
+                450,
+                -(-(400 - Math.floor(chart_array[0].streams / 5000) - 90)),
+              ]);
               return -(-(400 - Math.floor(d.streams / 5000) - 90));
             } else {
+              yScale.range([
+                450,
+                -(-(350 - Math.floor(chart_array[0].streams / 1000) - 90)),
+              ]);
               return -(-(350 - Math.floor(d.streams / 1000) - 90));
             }
           })
@@ -124,6 +143,9 @@ function ready([world]) {
           .text(function (d) {
             return d.name;
           });
+
+        var y_axis = d3.axisLeft().scale(yScale);
+        tipSVG.append("g").attr("transform", "translate(80, 0)").call(y_axis);
       } else {
         tipSVG
           .append("text")
@@ -131,13 +153,13 @@ function ready([world]) {
           .attr("transform", "translate(500,50)")
           .style("text-anchor", "middle")
           .attr("fill", "black")
-          .text(d.properties.name);
+          .text("Top 10 Streams in " + d.properties.name);
         tipSVG
           .append("text")
           .attr("font-family", "Arial, Helvetica, sans-serif")
           .attr("transform", "translate(500,250)")
           .style("text-anchor", "middle")
-          .style("font", "50px times")
+          .style("font-size", "50px")
           .attr("fill", "black")
           .text("No Spotify Data Found 🤷🏽‍♂️");
       }
@@ -147,6 +169,7 @@ function ready([world]) {
       tipSVG.transition().duration(500).style("opacity", 0);
       tipSVG.selectAll("text").remove();
       tipSVG.selectAll("rect").remove();
+      tipSVG.selectAll("g").remove();
     });
 }
 
