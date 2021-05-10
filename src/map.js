@@ -1,5 +1,7 @@
 var country_charts = new Map();
 var countries = new Map();
+
+// TODO figure out why there is an issue when it comes switching to laptop from desktop
 var svg = d3.select("svg");
 var g = svg.append("g");
 var barX = 100;
@@ -83,11 +85,14 @@ function ready([world]) {
       if (countries.get(d.properties.name) !== undefined) {
         var chart_array = countries.get(d.properties.name);
         var data = [];
+        var songs = [];
         chart_array.forEach((element) => {
+          songs.push(element.name);
           data.push(+element.streams);
         });
 
         var yScale = d3.scaleLinear().domain([0, d3.max(data)]);
+        var xScale = d3.scaleLinear().domain(songs).range([30, 870]);
 
         tipSVG
           .append("text")
@@ -141,11 +146,14 @@ function ready([world]) {
             return "rgb(30,215,96)";
           })
           .text(function (d) {
+            console.log(d.name);
             return d.name;
           });
 
         var y_axis = d3.axisLeft().scale(yScale);
+        var xAxis = d3.axisBottom(xScale).tickFormat((d) => d);
         tipSVG.append("g").attr("transform", "translate(80, 0)").call(y_axis);
+        tipSVG.append("g").attr("transform", "translate(50,450)").call(xAxis);
       } else {
         tipSVG
           .append("text")
