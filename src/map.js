@@ -240,9 +240,14 @@ function ready([world]) {
         .style("top", event.pageY - 10 + "px")
         .style("left", event.pageX + 10 + "px");
     })
-    .on("mouseout", function () {
+    .on("mouseout", function (event, i) {
+      console.log(i.properties);
       tooltip.html(``).style("visibility", "hidden");
-      d3.select(this).transition().attr("fill", staticColor);
+      if (i.properties.availability === "True") {
+        d3.select(this).transition().attr("fill", staticColor);
+      } else {
+        d3.select(this).transition().attr("fill", "rgb(25, 20, 20)");
+      }
     });
 }
 
