@@ -127,6 +127,15 @@ function ready([world]) {
           .attr("stroke", "white")
           .attr("fill", "white")
           .text("Top 10 Spotify Streams in " + d.properties.name);
+        bar
+          .append("text")
+          .attr("font-family", "Arial, Helvetica, sans-serif")
+          .attr("transform", "translate(425,475)")
+          .style("text-anchor", "middle")
+          .style("font-size", "20px")
+          .attr("stroke", "white")
+          .attr("fill", "white")
+          .text("Popular Songs on Spotify");
 
         bar
           .selectAll("rect")

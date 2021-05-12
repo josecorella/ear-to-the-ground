@@ -10,7 +10,20 @@ var svg = d3
   .append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+var tooltip = d3
+  .select("body")
+  .append("div")
+  .attr("class", "line-tooltip")
+  .style("position", "absolute")
+  .style("z-index", "10")
+  .style("visibility", "hidden")
+  .style("padding", "10px")
+  .style("background", "rgba(0,0,0,0.6)")
+  .style("border-radius", "4px")
+  .style("color", "#fff");
+
 var parseTime = d3.timeParse("%Y%m%d");
+var formatTime = d3.timeFormat("%B %e");
 
 var xAxis = d3.scaleTime().range([0, width]);
 var yAxis = d3.scaleLinear().range([height, 0]);
@@ -52,6 +65,35 @@ d3.csv("./data/april2021_global.csv").then(function (data) {
     .attr("stroke-linejoin", "round")
     .attr("stroke-linecap", "round")
     .attr("stroke-width", 3);
+
+  svg
+    .selectAll("dot")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("r", 5)
+    .attr("cx", function (d) {
+      return xAxis(d.date);
+    })
+    .attr("cy", function (d) {
+      return yAxis(d.streams);
+    })
+    .style("fill", "white")
+    .on("mouseover", function (event, d) {
+      nfObject = new Intl.NumberFormat("en-US");
+      tooltip
+        .html(
+          `<div>Day: ${formatTime(d.date)}</div><div>Streams: ${nfObject.format(
+            d.streams
+          )}</div>`
+        )
+        .style("left", event.pageX + "px")
+        .style("top", event.pageY - 28 + "px")
+        .style("visibility", "visible");
+    })
+    .on("mouseout", function () {
+      tooltip.html(``).style("visibility", "hidden");
+    });
 
   svg
     .append("g")
