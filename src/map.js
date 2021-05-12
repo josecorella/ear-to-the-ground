@@ -107,7 +107,6 @@ function ready([world]) {
       bar.selectAll("rect").remove();
       bar.selectAll("g").remove();
       if (countries.get(d.properties.name) !== undefined) {
-        console.log(d.properties.name);
         var chart_array = countries.get(d.properties.name);
         var data = [];
         var songs = [];

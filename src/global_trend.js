@@ -25,7 +25,6 @@ var valueline = d3
   });
 
 d3.csv("./data/april2021_global.csv").then(function (data) {
-  console.log(data);
   data.forEach(function (d) {
     d.date = parseTime(d.date);
     d.streams = +d.streams;
