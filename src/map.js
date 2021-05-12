@@ -241,9 +241,8 @@ function ready([world]) {
         .style("left", event.pageX + 10 + "px");
     })
     .on("mouseout", function (event, i) {
-      console.log(i.properties);
       tooltip.html(``).style("visibility", "hidden");
-      if (i.properties.availability === "True") {
+      if (i.properties.available === "True") {
         d3.select(this).transition().attr("fill", staticColor);
       } else {
         d3.select(this).transition().attr("fill", "rgb(25, 20, 20)");
