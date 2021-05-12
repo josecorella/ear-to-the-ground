@@ -1,31 +1,58 @@
 var country_charts = new Map();
 var countries = new Map();
 
+var margin = { top: 20, right: 20, bottom: 50, left: 100 },
+  width = 800 - margin.left - margin.right,
+  height = 700 - margin.top - margin.bottom;
 // TODO figure out why there is an issue when it comes switching to laptop from desktop
-var svg = d3.select("svg");
-var g = svg.append("g");
-var barX = 100;
-var h = 90;
+var svg = d3
+  .select("#map")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom);
 
-var projection = d3
-  .geoMercator()
-  .center([0, 0])
-  .scale(220)
-  .rotate([0, 0])
-  .translate([750, 650]);
+var bar = d3
+  .select("#bar-graph")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .attr("transform", "translate(800, -700)");
 
 var tooltip = d3
   .select("body")
   .append("div")
-  .attr("class", "tooltip")
-  .style("opacity", 0)
-  .html("<div id='tipDiv'></div>");
-var tipSVG = d3
-  .select("#tipDiv")
-  .append("svg")
-  .attr("width", 1000)
-  .attr("height", 500)
-  .style("opacity", 0);
+  .attr("class", "d3-tooltip")
+  .style("position", "absolute")
+  .style("z-index", "10")
+  .style("visibility", "hidden")
+  .style("padding", "10px")
+  .style("background", "rgba(0,0,0,0.6)")
+  .style("border-radius", "4px")
+  .style("color", "#fff");
+
+var bar_tooltip = d3
+  .select("body")
+  .append("div")
+  .attr("class", "d3-tooltip")
+  .style("position", "absolute")
+  .style("z-index", "10")
+  .style("visibility", "hidden")
+  .style("padding", "10px")
+  .style("background", "rgba(0,0,0,0.6)")
+  .style("border-radius", "4px")
+  .style("color", "#fff");
+
+var g = svg.append("g").attr("transform", "translate(-200, -200)");
+
+var barX = 100;
+var h = 90;
+var hoverColor = "#eec42d";
+var staticColor = "rgb(30,215,96)";
+
+var projection = d3
+  .geoMercator()
+  .center([0, 0])
+  .scale(125)
+  .rotate([0, 0])
+  .translate([600, 650]);
 
 var path = d3.geoPath().projection(projection);
 
@@ -76,12 +103,9 @@ function ready([world]) {
     )
     .style("stroke", "grey")
     .on("click", function (event, d) {
-      tooltip.transition().duration(200).style("opacity", 1);
-      tooltip.style("left", "500px").style("top", "250px");
-
-      tipSVG.transition().duration(200).style("opacity", 1);
-      tipSVG.style("left", "0").style("top", "250px");
-
+      bar.selectAll("text").remove();
+      bar.selectAll("rect").remove();
+      bar.selectAll("g").remove();
       if (countries.get(d.properties.name) !== undefined) {
         console.log(d.properties.name);
         var chart_array = countries.get(d.properties.name);
@@ -95,20 +119,23 @@ function ready([world]) {
         var yScale = d3.scaleLinear().domain([0, d3.max(data)]);
         var xScale = d3.scaleLinear().domain(songs).range([30, 870]);
 
-        tipSVG
+        bar
           .append("text")
           .attr("font-family", "Arial, Helvetica, sans-serif")
-          .attr("transform", "translate(500,50)")
+          .attr("transform", "translate(400,100)")
           .style("text-anchor", "middle")
-          .attr("fill", "black")
+          .style("font-size", "20px")
+          .attr("stroke", "white")
+          .attr("fill", "white")
           .text("Top 10 Spotify Streams in " + d.properties.name);
-        tipSVG
+
+        bar
           .selectAll("rect")
           .data(countries.get(d.properties.name))
           .enter()
           .append("rect")
           .attr("x", function (d, i) {
-            return barX + i * 85;
+            return barX + i * 70;
           })
           .attr("y", function (d, i) {
             if (chart_array[0].streams > 1000000) {
@@ -146,40 +173,78 @@ function ready([world]) {
           .attr("fill", function (d, i) {
             return "rgb(30,215,96)";
           })
-          .text(function (d) {
-            return d.name;
+          .on("mouseover", function (d, i) {
+            nfObject = new Intl.NumberFormat("en-US");
+            bar_tooltip
+              .html(
+                `<div>Song: ${i.name}</div><div>Artist: ${
+                  i.artist
+                }</div><div>Streams: ${nfObject.format(i.streams)}</div>`
+              )
+              .style("visibility", "visible");
+            d3.select(this).transition().attr("fill", hoverColor);
+          })
+          .on("mousemove", function (event) {
+            bar_tooltip
+              .style("top", event.pageY - 10 + "px")
+              .style("left", event.pageX + 10 + "px");
+          })
+          .on("mouseout", function () {
+            bar_tooltip.html(``).style("visibility", "hidden");
+            d3.select(this).transition().attr("fill", staticColor);
           });
 
         var y_axis = d3.axisLeft().scale(yScale);
         var xAxis = d3.axisBottom(xScale);
-        tipSVG.append("g").attr("transform", "translate(80, 0)").call(y_axis);
-        tipSVG.append("g").attr("transform", "translate(50,450)").call(xAxis);
+
+        bar
+          .append("g")
+          .attr("transform", "translate(90, 0)")
+          .call(y_axis)
+          .style("font-size", "14px")
+          .style("color", "white");
+        bar
+          .append("g")
+          .attr("transform", "translate(60,450)")
+          .call(xAxis)
+          .style("font-size", "14px")
+          .style("color", "white");
       } else {
-        tipSVG
+        bar
           .append("text")
           .attr("font-family", "Arial, Helvetica, sans-serif")
-          .attr("transform", "translate(500,50)")
+          .attr("transform", "translate(400,100)")
           .style("text-anchor", "middle")
-          .attr("fill", "black")
+          .style("font-size", "20px")
+          .attr("stroke", "white")
+          .attr("fill", "white")
           .text("Top 10 Streams in " + d.properties.name);
-        tipSVG
+        bar
           .append("text")
           .attr("font-family", "Arial, Helvetica, sans-serif")
-          .attr("transform", "translate(500,250)")
+          .attr("transform", "translate(400,200)")
           .style("text-anchor", "middle")
           .style("font-size", "50px")
-          .attr("fill", "black")
-          .text("No Spotify Data Found 🤷🏽‍♂️");
+          .attr("stroke", "white")
+          .attr("fill", "white")
+          .text("No Spotify Data Found");
       }
     })
-    .on("mouseout", function (d) {
-      tooltip.transition().duration(500).style("opacity", 0);
-      tipSVG.transition().duration(500).style("opacity", 0);
-      tipSVG.selectAll("text").remove();
-      tipSVG.selectAll("rect").remove();
-      tipSVG.selectAll("g").remove();
+    .on("mouseover", function (event, i) {
+      tooltip
+        .html(`<div>Country: ${i.properties.name}`)
+        .style("visibility", "visible");
+      d3.select(this).transition().attr("fill", hoverColor);
+    })
+    .on("mousemove", function (event) {
+      tooltip
+        .style("top", event.pageY - 10 + "px")
+        .style("left", event.pageX + 10 + "px");
+    })
+    .on("mouseout", function () {
+      tooltip.html(``).style("visibility", "hidden");
+      d3.select(this).transition().attr("fill", staticColor);
     });
 }
 
-// add a catch here
 Promise.all(promises).then(process_world_data).then(read_csv).then(ready);
