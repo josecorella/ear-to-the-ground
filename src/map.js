@@ -1,5 +1,6 @@
 var country_charts = new Map();
 var countries = new Map();
+var nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 var margin = { top: 20, right: 20, bottom: 50, left: 100 },
   width = 800 - margin.left - margin.right,
@@ -109,14 +110,12 @@ function ready([world]) {
       if (countries.get(d.properties.name) !== undefined) {
         var chart_array = countries.get(d.properties.name);
         var data = [];
-        var songs = [];
         chart_array.forEach((element) => {
-          songs.push(element.name);
           data.push(+element.streams);
         });
 
         var yScale = d3.scaleLinear().domain([0, d3.max(data)]);
-        var xScale = d3.scaleLinear().domain(songs).range([30, 870]);
+        var xScale = d3.scaleLinear().domain([]).range([30, 705]);
 
         bar
           .append("text")
@@ -130,7 +129,7 @@ function ready([world]) {
         bar
           .append("text")
           .attr("font-family", "Arial, Helvetica, sans-serif")
-          .attr("transform", "translate(425,475)")
+          .attr("transform", "translate(425,510)")
           .style("text-anchor", "middle")
           .style("font-size", "20px")
           .attr("stroke", "white")
@@ -203,7 +202,7 @@ function ready([world]) {
           });
 
         var y_axis = d3.axisLeft().scale(yScale);
-        var xAxis = d3.axisBottom(xScale);
+        var xAxis = d3.axisBottom().scale(xScale);
 
         bar
           .append("g")

@@ -38,7 +38,9 @@ var valueline = d3
   });
 
 d3.csv("./data/april2021_global.csv").then(function (data) {
+  var sumstat = d3.group(data, (d) => d.song);
   data.forEach(function (d) {
+    d.song = d.song;
     d.date = parseTime(d.date);
     d.streams = +d.streams;
   });
@@ -56,15 +58,20 @@ d3.csv("./data/april2021_global.csv").then(function (data) {
   ]);
 
   svg
-    .append("path")
-    .data([data])
-    .attr("class", "line")
-    .attr("d", valueline)
+    .selectAll("path")
+    .data(sumstat)
+    .join("path")
     .attr("fill", "none")
     .attr("stroke", "rgb(30, 215, 96)")
     .attr("stroke-linejoin", "round")
     .attr("stroke-linecap", "round")
-    .attr("stroke-width", 3);
+    .attr("stroke-width", 3)
+    .attr("d", (d) => {
+      return d3
+        .line()
+        .x((d) => xAxis(d.date))
+        .y((d) => yAxis(+d.streams))(d[1]);
+    });
 
   svg
     .selectAll("dot")
@@ -83,9 +90,9 @@ d3.csv("./data/april2021_global.csv").then(function (data) {
       nfObject = new Intl.NumberFormat("en-US");
       tooltip
         .html(
-          `<div>Day: ${formatTime(d.date)}</div><div>Streams: ${nfObject.format(
-            d.streams
-          )}</div>`
+          `<div>Song: ${d.song}</div><div>Day: ${formatTime(
+            d.date
+          )}</div><div>Streams: ${nfObject.format(d.streams)}</div>`
         )
         .style("left", event.pageX + "px")
         .style("top", event.pageY - 28 + "px")
