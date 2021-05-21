@@ -2,6 +2,7 @@ var margin = { top: 20, right: 20, bottom: 50, left: 100 },
   width = 1000 - margin.left - margin.right,
   height = 700 - margin.top - margin.bottom;
 
+// setting up canvas
 var svg = d3
   .select("#line-graph")
   .attr("width", 1200)
@@ -10,6 +11,7 @@ var svg = d3
   .append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+// settinng up tooltip
 var tooltip = d3
   .select("body")
   .append("div")
@@ -22,13 +24,17 @@ var tooltip = d3
   .style("border-radius", "4px")
   .style("color", "#fff");
 
+// for converting time stamp
 var parseTime = d3.timeParse("%Y%m%d");
+// for formating timestamp for only month and day
 var formatTime = d3.timeFormat("%B %e");
 
+// X Axis that goes the width of the svg
 var xAxis = d3.scaleTime().range([0, width]);
+// Y Axis that goes the height of the svg
 var yAxis = d3.scaleLinear().range([height, 0]);
-var zAxis = d3.scaleOrdinal(d3.schemeCategory10);
 
+// line variable for connecting all the dots
 var valueline = d3
   .line()
   .x(function (d) {
@@ -38,10 +44,13 @@ var valueline = d3
     return yAxis(d.streams);
   });
 
+// read csv file
 d3.csv("./data/april2021_global.csv", function (d) {
   return d;
 }).then(function (data) {
+  // groups all the data by song in order to have miltiple lines
   var sumstat = d3.group(data, (d) => d.song);
+  // Although i have saved the data in the group this will be helpful for the tooltip
   data.forEach(function (d) {
     d.song = d.song;
     d.date = parseTime(d.date);
@@ -60,6 +69,7 @@ d3.csv("./data/april2021_global.csv", function (d) {
     }),
   ]);
 
+  // adss path for all three lines
   svg
     .selectAll("path")
     .data(sumstat)
@@ -72,10 +82,11 @@ d3.csv("./data/april2021_global.csv", function (d) {
     .attr("d", (d) => {
       return d3
         .line()
-        .x((d) => xAxis(d.date))
-        .y((d) => yAxis(+d.streams))(d[1]);
+        .x((d) => xAxis(d.date)) //so the connection goes to the right place in the x axis
+        .y((d) => yAxis(+d.streams))(d[1]); //so the connection goes to the right place in the y axis
     });
 
+  // adds dots to all the connections in order to add tooltips
   svg
     .selectAll("dot")
     .data(data)
@@ -127,6 +138,8 @@ d3.csv("./data/april2021_global.csv", function (d) {
     .style("text-anchor", "end")
     .attr("fill", "white")
     .text("Number of Streams");
+
+  // adds a text label for the each of the lines and places them at the rightmost point
   svg
     .append("text")
     .attr("transform", "translate(" + (width + 10) + "," + 100 + ")")

@@ -6,17 +6,20 @@ var margin = { top: 20, right: 20, bottom: 50, left: 100 },
   width = 800 - margin.left - margin.right,
   height = 700 - margin.top - margin.bottom;
 // TODO figure out why there is an issue when it comes switching to laptop from desktop
+// set up canvas
 var svg = d3
   .select("#map")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom);
 
+// set up bar svg tooltip
 var bar = d3
   .select("#bar-graph")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
   .attr("transform", "translate(800, -700)");
 
+// set up tooltip for interacting with the map
 var tooltip = d3
   .select("body")
   .append("div")
@@ -29,6 +32,7 @@ var tooltip = d3
   .style("border-radius", "4px")
   .style("color", "#fff");
 
+// set up tooltip for interacting with bar graph tooltip
 var bar_tooltip = d3
   .select("body")
   .append("div")
@@ -41,13 +45,16 @@ var bar_tooltip = d3
   .style("border-radius", "4px")
   .style("color", "#fff");
 
+// adds g element for the map to live in
 var g = svg.append("g").attr("transform", "translate(-200, -200)");
 
+// bar chart elements
 var barX = 100;
 var h = 90;
 var hoverColor = "#eec42d";
 var staticColor = "rgb(30,215,96)";
 
+// set up geomercator for the world map
 var projection = d3
   .geoMercator()
   .center([0, 0])
@@ -55,10 +62,13 @@ var projection = d3
   .rotate([0, 0])
   .translate([600, 650]);
 
+// this adds a path so it connects all countries with a line
 var path = d3.geoPath().projection(projection);
 
+// setting up a promise so that before displaying anything i have read all the files needed
 var promises = [d3.json("./data/world.json")];
 
+// processes the file for drawing the world map
 function process_world_data([world]) {
   world.objects.countries.geometries.forEach((element) => {
     if (element.properties.hasOwnProperty("available")) {
@@ -72,6 +82,7 @@ function process_world_data([world]) {
   return [world];
 }
 
+// async function for reading country csv file
 async function read_csv([world]) {
   for (let [key, value] of country_charts.entries()) {
     country_chart = new Array();
@@ -92,18 +103,22 @@ async function read_csv([world]) {
 }
 
 function ready([world]) {
+  // connects the path variable with the inforamtion we found in the files
   g.selectAll("path")
     .data(topojson.feature(world, world.objects.countries).features)
     .enter()
     .append("path")
     .attr("d", path)
-    .attr("fill", (d) =>
-      d.properties.hasOwnProperty("available")
-        ? "rgb(30,215,96)"
-        : "rgb(25, 20, 20)"
+    .attr(
+      "fill",
+      (d) =>
+        d.properties.hasOwnProperty("available")
+          ? "rgb(30,215,96)" //green for available
+          : "rgb(25, 20, 20)" //black for not available
     )
     .style("stroke", "grey")
     .on("click", function (event, d) {
+      // removes anything related to the bar graph tooltip so we can add a new one
       bar.selectAll("text").remove();
       bar.selectAll("rect").remove();
       bar.selectAll("g").remove();
@@ -114,9 +129,11 @@ function ready([world]) {
           data.push(+element.streams);
         });
 
+        // set up X and Y axis
         var yScale = d3.scaleLinear().domain([0, d3.max(data)]);
         var xScale = d3.scaleLinear().domain([]).range([30, 705]);
 
+        // Add the titles and axis labels
         bar
           .append("text")
           .attr("font-family", "Arial, Helvetica, sans-serif")
@@ -136,6 +153,7 @@ function ready([world]) {
           .attr("fill", "white")
           .text("Popular Songs on Spotify");
 
+        // make the rectangles for the grpahs
         bar
           .selectAll("rect")
           .data(countries.get(d.properties.name))
@@ -145,6 +163,7 @@ function ready([world]) {
             return barX + i * 70;
           })
           .attr("y", function (d, i) {
+            // this makes sure that the bars are drawn proportionally
             if (chart_array[0].streams > 1000000) {
               yScale.range([
                 450,
@@ -181,6 +200,7 @@ function ready([world]) {
             return "rgb(30,215,96)";
           })
           .on("mouseover", function (d, i) {
+            // tooltips
             nfObject = new Intl.NumberFormat("en-US");
             bar_tooltip
               .html(
@@ -217,6 +237,8 @@ function ready([world]) {
           .style("font-size", "14px")
           .style("color", "white");
       } else {
+        // if we found that spotify is not available or the data was not available we
+        // displey the appropriate message
         bar
           .append("text")
           .attr("font-family", "Arial, Helvetica, sans-serif")
@@ -258,4 +280,6 @@ function ready([world]) {
     });
 }
 
+// Promise to read all the individual csv files that contain information on
+// the countries and their most streamed songs
 Promise.all(promises).then(process_world_data).then(read_csv).then(ready);
