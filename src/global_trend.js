@@ -4,9 +4,9 @@ var margin = { top: 20, right: 20, bottom: 50, left: 100 },
 
 var svg = d3
   .select("#line-graph")
-  .attr("width", width + margin.left + margin.right)
+  .attr("width", 1200)
   .attr("height", height + margin.top + margin.bottom)
-  .attr("transform", "translate(" + 250 + "," + margin.top + ")")
+  .attr("transform", "translate(" + 100 + "," + margin.top + ")")
   .append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -27,6 +27,7 @@ var formatTime = d3.timeFormat("%B %e");
 
 var xAxis = d3.scaleTime().range([0, width]);
 var yAxis = d3.scaleLinear().range([height, 0]);
+var zAxis = d3.scaleOrdinal(d3.schemeCategory10);
 
 var valueline = d3
   .line()
@@ -37,7 +38,9 @@ var valueline = d3
     return yAxis(d.streams);
   });
 
-d3.csv("./data/april2021_global.csv").then(function (data) {
+d3.csv("./data/april2021_global.csv", function (d) {
+  return d;
+}).then(function (data) {
   var sumstat = d3.group(data, (d) => d.song);
   data.forEach(function (d) {
     d.song = d.song;
@@ -124,4 +127,28 @@ d3.csv("./data/april2021_global.csv").then(function (data) {
     .style("text-anchor", "end")
     .attr("fill", "white")
     .text("Number of Streams");
+  svg
+    .append("text")
+    .attr("transform", "translate(" + (width + 10) + "," + 100 + ")")
+    .attr("dy", ".35em")
+    .attr("text-anchor", "start")
+    .style("font-size", "14px")
+    .attr("fill", "white")
+    .text("Peaches");
+  svg
+    .append("text")
+    .attr("transform", "translate(" + (width + 10) + "," + 270 + ")")
+    .attr("dy", ".35em")
+    .attr("text-anchor", "start")
+    .style("font-size", "14px")
+    .attr("fill", "white")
+    .text("Levitating");
+  svg
+    .append("text")
+    .attr("transform", "translate(" + (width + 10) + "," + 310 + ")")
+    .attr("dy", ".35em")
+    .attr("text-anchor", "start")
+    .style("font-size", "14px")
+    .attr("fill", "white")
+    .text("Leave The Door Open");
 });

@@ -77,7 +77,6 @@ d3.csv("./data/breakdown.csv").then(function (data) {
       return color(d.data.song);
     })
     .style("opacity", function (d) {
-      console.log(d.value / 1000000);
       return opacity(d.value / 1000000);
     })
     .on("mouseover", function (event, i) {
